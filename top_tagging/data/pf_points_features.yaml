@@ -18,8 +18,8 @@ inputs:
    pf_points:
       length: 100
       vars: 
-         - Etarel
-         - Phirel
+         - Jet_Etarel
+         - Jet_Phirel
    pf_features:
       length: 100
       vars: 
@@ -30,10 +30,10 @@ inputs:
       ###              clip_min(optional, default=-5), 
       ###              clip_max(optional, default=5), 
       ###              pad_value(optional, default=0)]
-         - Etarel
-         - Phirel
-         - [E_log, 2, 1]
-         - [P_log, 2, 1]
+         - Jet_Etarel
+         - Jet_Phirel
+         - [Jet_E_log, 2, 1]
+         - [Jet_P_log, 2, 1]
    pf_mask:
       length: 100
       vars: 
@@ -54,13 +54,13 @@ labels:
 observers:
    - origIdx
    - idx
-   - E_tot
-   - PX_tot
-   - PY_tot
-   - PZ_tot
-   - P_tot
-   - Eta_tot
-   - Phi_tot
+   - Jet_E_tot
+   - Jet_PX_tot
+   - Jet_PY_tot
+   - Jet_PZ_tot
+   - Jet_P_tot
+   - Jet_Eta_tot
+   - Jet_Phi_tot
 
 # weights:
    ### [option 1] use precomputed weights stored in the input files

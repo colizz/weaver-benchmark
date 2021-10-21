@@ -5,7 +5,7 @@ selection:
 new_variables:
    ### [format] name: formula
    ### can use functions from `math`, `np` (numpy), and `awkward` in the expression
-   pf_mask: awkward.JaggedArray.ones_like(E)
+   pf_mask: awkward.JaggedArray.ones_like(Jet_E)
    is_bkg: np.logical_not(is_signal_new)
 
 preprocess:

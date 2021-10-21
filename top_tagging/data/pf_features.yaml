@@ -57,5 +57,3 @@ observers:
    # use_precomputed_weights: true
    # weight_branches: [weight, class_weight]
    ### [option 2] compute weights on-the-fly using reweighting histograms
-
-treename: Events

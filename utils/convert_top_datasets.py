@@ -5,7 +5,7 @@ import math
 import os
 from tqdm import tqdm
 import argparse
-parser = argparse.ArgumentParser('Convert top benchmark h5 datasets to awkd')
+parser = argparse.ArgumentParser('Convert top benchmark h5 datasets to ROOT/awkd')
 parser.add_argument('-i', '--inputdir', required=True, help='Directory that contains the input h5 file.')
 parser.add_argument('-c', '--condition', default='all', choices=['train', 'val', 'test', 'all'], help='Create dataset for train/test/val/all.')
 parser.add_argument('-m', '--mode', default='uproot', choices=['awkd', 'uproot', 'ROOT'], help='Mode to write ROOT files')

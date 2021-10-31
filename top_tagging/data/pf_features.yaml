@@ -44,13 +44,13 @@ labels:
 observers:
    - origIdx
    - idx
-   - Jet_E_tot
-   - Jet_PX_tot
-   - Jet_PY_tot
-   - Jet_PZ_tot
-   - Jet_P_tot
-   - Jet_Eta_tot
-   - Jet_Phi_tot
+   - E_tot
+   - PX_tot
+   - PY_tot
+   - PZ_tot
+   - P_tot
+   - Eta_tot
+   - Phi_tot
 
 # weights:
    ### [option 1] use precomputed weights stored in the input files

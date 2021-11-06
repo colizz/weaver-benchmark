@@ -24,10 +24,10 @@ inputs:
       ###              clip_min(optional, default=-5), 
       ###              clip_max(optional, default=5), 
       ###              pad_value(optional, default=0)]
-         - Jet_Etarel
-         - Jet_Phirel
-         - [Jet_E_log, 2, 1]
-         - [Jet_P_log, 2, 1]
+         - Part_Etarel
+         - Part_Phirel
+         - [Part_E_log, 2, 1]
+         - [Part_P_log, 2, 1]
 
 labels:
    ### type can be `simple`, `custom`

@@ -5,7 +5,7 @@ selection:
 new_variables:
    ### [format] name: formula
    ### can use functions from `math`, `np` (numpy), and `awkward` in the expression
-   pf_mask: awkward.JaggedArray.ones_like(Jet_E)
+   pf_mask: awkward.JaggedArray.ones_like(Part_E)
    is_bkg: np.logical_not(is_signal_new)
 
 preprocess:
@@ -18,8 +18,8 @@ inputs:
    pf_points:
       length: 100
       vars: 
-         - Jet_Etarel
-         - Jet_Phirel
+         - Part_Etarel
+         - Part_Phirel
    pf_features:
       length: 100
       vars: 
@@ -30,10 +30,10 @@ inputs:
       ###              clip_min(optional, default=-5), 
       ###              clip_max(optional, default=5), 
       ###              pad_value(optional, default=0)]
-         - Jet_Etarel
-         - Jet_Phirel
-         - [Jet_E_log, 2, 1]
-         - [Jet_P_log, 2, 1]
+         - Part_Etarel
+         - Part_Phirel
+         - [Part_E_log, 2, 1]
+         - [Part_P_log, 2, 1]
    pf_mask:
       length: 100
       vars: 

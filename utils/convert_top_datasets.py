@@ -21,7 +21,7 @@ def store_file_awkd(res_array_2d, res_array_1d, outpath):
     print('Saving to file', outpath, '...')
     if not os.path.exists(os.path.dirname(outpath)):
         os.makedirs(os.path.dirname(outpath))
-    ak0.save(outpath, ak0.fromiter({**res_1d, **{'Jet_'+k: res_2d[k] for k in res_2d}} for res_1d, res_2d in zip(res_array_1d, res_array_2d)), mode='w')
+    ak0.save(outpath, ak0.fromiter({**res_1d, **{'Part_'+k: res_2d[k] for k in res_2d}} for res_1d, res_2d in zip(res_array_1d, res_array_2d)), mode='w')
  
 
 def store_file_uproot(res_array_2d, res_array_1d, outpath):
@@ -41,8 +41,8 @@ def store_file_uproot(res_array_2d, res_array_1d, outpath):
     if not os.path.exists(os.path.dirname(outpath)):
         os.makedirs(os.path.dirname(outpath))
     with uproot.recreate(outpath, compression=uproot.LZ4(4)) as fw:
-        # Note that 2D variable names prefixed with `Jet_` due to uproot storing rule of jagged arrays
-        fw['Events'] = {'Jet': ak.zip({k:ak_array2d[k] for k in ak.fields(ak_array2d)}), **{k:ak_array1d[k] for k in ak.fields(ak_array1d)}}
+        # Note that 2D variable names prefixed with `Part_` due to uproot storing rule of jagged arrays
+        fw['Events'] = {'Part': ak.zip({k:ak_array2d[k] for k in ak.fields(ak_array2d)}), **{k:ak_array1d[k] for k in ak.fields(ak_array1d) if k != 'nPart'}}
         fw['Events'].title = 'Events'
 
 
@@ -68,16 +68,16 @@ def store_file_ROOT(res_array_2d, res_array_1d, outpath):
             dic[var] = array(vartype, [1])
             tree.Branch(var, dic[var], f'{var}/{vartype.upper()}')
         for var in res_array_2d[0]:
-            dic['Jet_' + var] = ROOT.vector('float')()
-            tree.Branch('Jet_' + var, 'vector<float>', dic['Jet_' + var])
+            dic['Part_' + var] = ROOT.vector('float')()
+            tree.Branch('Part_' + var, 'vector<float>', dic['Part_' + var])
         # Store variables
         for res_1d, res_2d in zip(res_array_1d, res_array_2d): # loop event by event
             for var in res_1d: # loop over variable names
                 dic[var][0] = res_1d[var]
             for var in res_2d:
-                dic['Jet_' + var].clear()
+                dic['Part_' + var].clear()
                 for v in res_2d[var]:
-                    dic['Jet_' + var].push_back(v)
+                    dic['Part_' + var].push_back(v)
             tree.Fill()
         f.Write()
     finally:
@@ -85,7 +85,7 @@ def store_file_ROOT(res_array_2d, res_array_1d, outpath):
 
 
 def convert(input_files, output_file, store_file_func):
-    #  List all 2D and 1D variables to store. Note that 2D variables will be prefixed with `Jet_`
+    #  List all 2D and 1D variables to store. Note that 2D variables will be prefixed with `Part_`
     varlist_2d = ['E', 'PX', 'PY', 'PZ']
     varlist_1d = ['truthE', 'truthPX', 'truthPY', 'truthPZ', 'ttv', 'is_signal_new']
     varlist_2d_new = ['E_log', 'P', 'P_log', 'Etarel', 'Phirel']

@@ -11,5 +11,5 @@ transfer_output_files   = weaver-benchmark/weaver/output.tar
 transfer_output_remaps  = "output.tar = output.$(ClusterId).$(ProcId).tar"
 request_GPUs = 1
 request_CPUs = 4
-+MaxRuntime = 604800
++JobFlavour = "tomorrow"
 queue
